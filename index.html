@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <meta name="description" content="Xuân Sơn vương tầm thế giới">
+    <meta property="og:image" content="./img/descript.jpg">
+    <link rel="icon" href="./img/logo.svg">
+    <title>Mowtain - Clone post in group</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <div class="mowtainer">
+            <input type="text" placeholder="Access Tokens" id="token">
+            <input type="text" placeholder="Group ID" id="group_list">
+            <input type="text" placeholder="Content" id="content"></input>
+            <input type="button" onclick="post()" value="Post">
+        </div>
+        <div class="setting">
+            <img src="img/setting.svg" alt="">
+            <div class="box">
+                <a href="https://m.facebook.com/composer/ocelot/async_loader/?publisher=feed" target="_blank">
+                    Get Token
+                </a>
+                <a onclick="get_group_list()">Get Group</a>
+            </div>
+        </div>
+        <a href="https://docs.google.com/document/d/1P0bfxQ9H9Tv9Z6ChdyHso8Rg_spa-LhY68LwR280Qac/edit?usp=sharing"
+            target="_blank" class="tutorial">Tutorial</a>
+    </main>
+    <script src="index.js"></script>
+</body>
+
+</html>
