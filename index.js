@@ -8,16 +8,16 @@ const post = async () => {
         let content = JSON.parse(document.querySelector("#content").value)
         for (let item of content) {
             for (let id of group_list) {
-                axios.post("https://graph.facebook.com/" + id + "/photos", {
+                axios.post("https://graph.facebook.com/" + id + "/videos", {
                     access_token: token,
-                    message: item.message,
-                    url: item.url
+                    description: item.message,
+                    file_url: item.url
                 }).then((res) => {
                     alert("Success with Group ID: " + res.data.id)
                 }).catch((error) => {
                     console.log(error);
                 })
-                await sleep(30000)
+                await sleep(50000)
             }
         }
     } catch (error) {
