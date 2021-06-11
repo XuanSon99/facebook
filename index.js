@@ -3,21 +3,33 @@ function sleep(ms) {
 }
 const post = async () => {
     try {
-        let token = document.querySelector("#token").value
+        let tokens = document.querySelector("#token").value.split("|")
         let group_list = document.querySelector("#group_list").value.split("|")
         let content = JSON.parse(document.querySelector("#content").value)
+        let notifi = document.querySelector(".notification")
+        notifi.style.display = "block"
         for (let item of content) {
-            for (let id of group_list) {
-                axios.post("https://graph.facebook.com/" + id + "/videos", {
+            for (let i = 0; i < group_list.length; i++) {
+                let token = tokens[i]
+                if (!token) {
+                    return;
+                }
+                message("start", "Bắt đầu đăng lên group: " + group_list[i])
+                axios.post("https://graph.facebook.com/" + group_list[i] + "/videos", {
                     access_token: token,
                     description: item.message,
                     file_url: item.url
                 }).then((res) => {
-                    alert("Success with Group ID: " + res.data.id)
+                    message("success", "Thành công group: " + res.data.id)
                 }).catch((error) => {
-                    console.log(error);
+                    message("error", "Không thành công group: " + group_list[i])
                 })
-                await sleep(50000)
+                let time = 30
+                setInterval(() => {
+                    time--
+                    document.querySelector(".notification span").textContent = time + "s"
+                }, 1000);
+                await sleep(30000)
             }
         }
     } catch (error) {
@@ -42,3 +54,14 @@ const get_group_list = () => {
         console.log(error);
     })
 }
+const message = (type, text) => {
+    var p = document.createElement("p");
+    var content = document.createTextNode(text);
+    p.appendChild(content);
+    p.classList.add(type)
+    var div = document.querySelector(".notification");
+    div.appendChild(p);
+}
+
+//861527454458605
+// EAAAAZAw4FxQIBAD5XzctogKpQIiOZAvf4A9Jbs6Hw4f2TqUFA38KIHXEKefrgMVdO4ZB1OpBW2rhWWQtiRjpTufzxjyRruFmwUUZBUaPv4CrL3ZAHtD4w8ZAZB0hmjZBvXQHfbBax8HXmG90LYI4p0ZCZCSNLGG73WytyHq5XP08jWb8V3vEDH2xJR5rNlJ0jGyksZD|EAAAAZAw4FxQIBACM1uZCY0gcbDXLPvRQMiwrreModKaoXkMZA33oTxT45tOkj7yEa398BytMtoPDgxYyugZAJgZA6MuZCGLkTRdC3RTduyd57IbO4PIZArNhVZB8zpZB3HXCeDhTsOkXpDhTTZBNfMCjsEynXO8EEy0x3qleTZCHR10MTobt60e6j7HlPCD3W4dV6oZD

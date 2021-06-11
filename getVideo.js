@@ -15,7 +15,7 @@ javascript: void (function () {
         for (let i = 0; i < post.length; i++) {
             try {
                 let message = post[i].querySelector("._5rgt._5nk5._5msi p").textContent || ""
-                let url = "https://" + post[i].querySelector("section>div>div").getAttribute("data-store").split("https").filter(item => item.includes("video.fhan3"))[0].split('","')[0].slice(5).replaceAll("\\", "")
+                let url = "https://" + post[i].querySelector("section>div>div").getAttribute("data-store").split("https").filter(item => item.includes("/video"))[0].split('","')[0].slice(5).replaceAll("\\", "")
                 list.push({
                     id: i,
                     message: message,
