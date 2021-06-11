@@ -27,8 +27,11 @@ const post = async () => {
                 let time = 30
                 let cowndown = setInterval(() => {
                     time--
-                    if (time == 0) clearInterval(cowndown)
                     document.querySelector(".notification span").textContent = time + "s"
+                    if (time == 0) {
+                        clearInterval(cowndown)
+                        document.querySelector(".notification span").textContent = "Ok"
+                    }
                 }, 1000);
                 await sleep(30000)
             }
@@ -65,4 +68,4 @@ const message = (type, text) => {
 }
 
 //861527454458605
-// EAAAAZAw4FxQIBAD5XzctogKpQIiOZAvf4A9Jbs6Hw4f2TqUFA38KIHXEKefrgMVdO4ZB1OpBW2rhWWQtiRjpTufzxjyRruFmwUUZBUaPv4CrL3ZAHtD4w8ZAZB0hmjZBvXQHfbBax8HXmG90LYI4p0ZCZCSNLGG73WytyHq5XP08jWb8V3vEDH2xJR5rNlJ0jGyksZD|EAAAAZAw4FxQIBACM1uZCY0gcbDXLPvRQMiwrreModKaoXkMZA33oTxT45tOkj7yEa398BytMtoPDgxYyugZAJgZA6MuZCGLkTRdC3RTduyd57IbO4PIZArNhVZB8zpZB3HXCeDhTsOkXpDhTTZBNfMCjsEynXO8EEy0x3qleTZCHR10MTobt60e6j7HlPCD3W4dV6oZD
+// EAAAAZAw4FxQIBAH1EoDiYSxEUvl8BfqDQ4mr1vGQZA64LDkme9ChbIxmXoAVZAZC58Do2sWB7WabIfFu1HVziq8h6b3mhBRBSBx7BEXPE6hDTw6BUZC40SWjgxm1Y3egei8k4ZBb0LeK9nVT48SCXTYVMtobA8GCaRHSG6L8tG3oj7FVovYuZBgZC8lefX5TDnQZD
