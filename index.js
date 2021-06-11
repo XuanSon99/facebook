@@ -20,7 +20,7 @@ const post = async () => {
                     description: item.message,
                     file_url: item.url
                 }).then((res) => {
-                    message("success", "Thành công group: " + res.data.id)
+                    message("success", "Thành công post ID: " + res.data.id)
                 }).catch((error) => {
                     message("error", "Không thành công group: " + group_list[i])
                 })
