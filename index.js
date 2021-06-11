@@ -25,8 +25,9 @@ const post = async () => {
                     message("error", "Không thành công group: " + group_list[i])
                 })
                 let time = 30
-                setInterval(() => {
+                let cowndown = setInterval(() => {
                     time--
+                    if (time == 0) clearInterval(cowndown)
                     document.querySelector(".notification span").textContent = time + "s"
                 }, 1000);
                 await sleep(30000)
