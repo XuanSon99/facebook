@@ -8,33 +8,32 @@ const post = async () => {
         let content = JSON.parse(document.querySelector("#content").value)
         let notifi = document.querySelector(".notification")
         notifi.style.display = "block"
-        for (let item of content) {
-            for (let i = 0; i < group_list.length; i++) {
-                let token = tokens[i]
-                if (!token) {
-                    return;
-                }
-                message("start", "Bắt đầu đăng lên group: " + group_list[i])
-                axios.post("https://graph.facebook.com/" + group_list[i] + "/videos", {
-                    access_token: token,
-                    description: item.message,
-                    file_url: item.url
-                }).then((res) => {
-                    message("success", "Thành công post ID: " + res.data.id)
-                }).catch((error) => {
-                    message("error", "Không thành công group: " + group_list[i])
-                })
-                let time = 30
-                let cowndown = setInterval(() => {
-                    time--
-                    document.querySelector(".notification span").textContent = time + "s"
-                    if (time == 0) {
-                        clearInterval(cowndown)
-                        document.querySelector(".notification span").textContent = "Ok"
-                    }
-                }, 1000);
-                await sleep(30000)
+        for (let i = 0; i < content.length; i++) {
+            let group = group_list[Math.floor(Math.random() * group_list.length)]
+            let token = tokens[Math.floor(Math.random() * tokens.length)]
+            if (!token) {
+                return;
             }
+            message("start", "Bắt đầu đăng lên group: " + group)
+            axios.post("https://graph.facebook.com/" + group + "/videos", {
+                access_token: token,
+                description: content[i].message,
+                file_url: content[i].url
+            }).then((res) => {
+                message("success", "Thành công post ID: " + res.data.id)
+            }).catch((error) => {
+                message("error", "Không thành công group: " + group)
+            })
+            let time = 30
+            let cowndown = setInterval(() => {
+                time--
+                document.querySelector(".notification span").textContent = time + "s"
+                if (time == 0) {
+                    clearInterval(cowndown)
+                    document.querySelector(".notification span").textContent = "Ok"
+                }
+            }, 1000);
+            await sleep(30000)
         }
     } catch (error) {
         if (confirm("Click oki to see the tutorial")) {
@@ -68,4 +67,4 @@ const message = (type, text) => {
 }
 
 //861527454458605
-// EAAAAZAw4FxQIBAH1EoDiYSxEUvl8BfqDQ4mr1vGQZA64LDkme9ChbIxmXoAVZAZC58Do2sWB7WabIfFu1HVziq8h6b3mhBRBSBx7BEXPE6hDTw6BUZC40SWjgxm1Y3egei8k4ZBb0LeK9nVT48SCXTYVMtobA8GCaRHSG6L8tG3oj7FVovYuZBgZC8lefX5TDnQZD
+// EAAAAZAw4FxQIBANPMUs4uRCp2DvkpZB8Bw76Gw1ePjCPiwJnpyDJ3Y4uviLRR29RBmh0NlGbKe5R6tTPcRidfZAweJjnRWCzuP2a6mFfkeLyZADMWMQD3Y6zCHUWYQIEVy26otxDivuTrIuCGdz3nCQgtAFGjR2dIhKw24Ex2nfd2y6t0qPZBJV0lA0WAg2gZD
